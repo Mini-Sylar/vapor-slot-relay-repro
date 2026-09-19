@@ -1,0 +1,22 @@
+body {
+  font-family: system-ui, sans-serif;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.columns {
+  display: flex;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+.columns > section {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+}
+code {
+  background: #f2f2f2;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+}

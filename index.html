@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vapor interop slot-relay repro</title>
+  </head>
+  <body>
+    <h1>Vue 3.6: a slot forwarded through a dynamic functional component renders as <code>[object Object]</code></h1>
+    <p>
+      Same <code>Wrapper.vue</code>/<code>MenuLike.vue</code> source (<code>src/plain/</code> has
+      no <code>vapor</code> attribute, <code>src/vapor/</code> is byte-for-byte identical except
+      for it), mounted three ways. No interaction needed — nested rows render immediately.
+    </p>
+    <div class="columns">
+      <section>
+        <h2>1. VDOM only</h2>
+        <p><code>createApp(PlainApp).mount(...)</code></p>
+        <div id="vdom-only"></div>
+      </section>
+      <section>
+        <h2>2. Vapor only</h2>
+        <p><code>createVaporApp(VaporOnlyApp).mount(...)</code></p>
+        <div id="vapor-only"></div>
+      </section>
+      <section>
+        <h2>3. Interop (the bug)</h2>
+        <p>
+          <code>createApp(InteropApp).use(vaporInteropPlugin).mount(...)</code> — a plain VDOM
+          root embedding the Vapor-marked <code>Wrapper</code> as a child.
+        </p>
+        <div id="interop"></div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
